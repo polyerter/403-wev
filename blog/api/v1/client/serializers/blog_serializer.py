@@ -17,7 +17,8 @@ class ArticleSerializer(serializers.ModelSerializer):
             'title', 
             'text', 
             'created_at',
-            'category'
+            'category',
+            'published',
         ]
 
 class CommentSerializer(serializers.ModelSerializer):
