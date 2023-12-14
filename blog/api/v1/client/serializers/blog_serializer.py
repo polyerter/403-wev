@@ -9,6 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
             'name'
         ]
 
+
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
@@ -21,6 +22,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             'published',
         ]
 
+
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
@@ -32,11 +34,17 @@ class CommentSerializer(serializers.ModelSerializer):
             'article'
         ]
 
+
 class CategorySerializer(serializers.ModelSerializer):
+    articles = ArticleSerializer(many=True, source='article_set')
+    article_count = serializers.IntegerField(source='count')
+
     class Meta:
         model = Category
         fields = [
             'id', 
             'name',
-            'description'
+            'description',
+            'article_count',
+            'articles',
         ]
